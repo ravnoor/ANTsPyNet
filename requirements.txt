@@ -1,5 +1,8 @@
 antspyx
-tensorflow>=2.6
+tensorflow>=2.6; platform_machine == 'x86_64'
+tensorflow-aarch64>=2.6; platform_machine == 'aarch64'
+tensorflow-macos>=2.6; platform_machine == 'arm64' and sys_platform == 'darwin'
+tensorflow-metal>=2.6; platform_machine == 'arm64' and sys_platform == 'darwin'
 tensorflow_probability
 keras
 requests
