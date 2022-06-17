@@ -2,7 +2,7 @@
 # Note: QEMU emulated ppc64le build might take ~6 hours
 
 # Use conda to resolve dependencies cross-platform
-FROM noelmni/antspy:master-8edfac1 as builder
+FROM noelmni/antspy:v0.3.3 as builder
 
 # install libpng to system for cross-architecture support
 # https://github.com/ANTsX/ANTs/issues/1069#issuecomment-681131938
