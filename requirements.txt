@@ -1,7 +1,11 @@
 antspyx
-tensorflow; platform_machine == 'x86_64'
-tensorflow-macos; platform_machine == 'arm64' and sys_platform == 'darwin'
-tensorflow-metal; platform_machine == 'arm64' and sys_platform == 'darwin'
-tensorflow_probability
-keras
+# keras; platform_machine=='x86_64' or platform_machine=='aarch64'
+# keras<2.10.0,>=2.9.0rc0; platform_machine == 'arm64' and sys_platform == 'darwin'
+# protobuf<3.20,>=3.9.2; platform_machine == 'arm64' and sys_platform == 'darwin'
+gast<=0.4.0,>=0.2.1; platform_machine == 'arm64' and sys_platform == 'darwin'
 requests
+tensorflow; platform_machine == 'x86_64' or platform_machine=='aarch64'
+tensorflow-macos==2.9.1; platform_machine == 'arm64' and sys_platform == 'darwin'
+tensorflow-metal==0.5.1; platform_machine == 'arm64' and sys_platform == 'darwin'
+tensorflow-probability; platform_machine=='x86_64' or platform_machine=='aarch64'
+tensorflow-probability==0.17.0; platform_machine == 'arm64' and sys_platform == 'darwin'
