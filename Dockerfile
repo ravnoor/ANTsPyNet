@@ -1,40 +1,31 @@
-# This Dockerfile supports amd64,arm64,ppc64le
-# Note: QEMU emulated ppc64le build might take ~6 hours
+# This Dockerfile supports amd64 and arm64
 
 # Use conda to resolve dependencies cross-platform
-FROM noelmni/antspy:v0.3.3 as builder
+FROM noelmni/antspy:v0.3.5 as builder
 
 # install libpng to system for cross-architecture support
 # https://github.com/ANTsX/ANTs/issues/1069#issuecomment-681131938
-# Also install kitware key and get recent cmake
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=America/Montreal
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       apt-transport-https \
+      bash \
       build-essential \
-      ca-certificates \
-      curl \
       git \
-      gnupg \
-      libpng-dev \
-      software-properties-common
+      libpng-dev
 
 # install cmake binary using conda for multi-arch support
-# apt install fails because libssl1.0.0 is not available for newer Debian
-RUN conda install -c anaconda cmake
+RUN conda install -c conda-forge cmake
 
 WORKDIR /usr/local/src
-
+COPY requirements.txt .
+RUN pip install -r requirements.txt
 COPY . .
 
 # number of parallel make jobs
 ARG j=2
-
-RUN python -m pip install -r requirements.txt
-RUN python setup.py install
+RUN pip --no-cache-dir -v install .
 
 # optimize layers
-FROM debian:bullseye-slim
+FROM debian:bullseye-20230109-slim
 COPY --from=builder /opt/conda /opt/conda
 ENV PATH=/opt/conda/bin:$PATH
