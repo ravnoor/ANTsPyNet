@@ -37,11 +37,10 @@ jobs:
         with:
           images: noelmni/antspynet
           tags: |
-            type=semver,pattern={{version}}
+            type=semver,pattern={{version}},event=tag
             # dynamically set the branch name as a prefix
-            type=sha,prefix={{branch}}-
-            # dynamically set the branch name
-            type=raw,value=latest
+            type=sha,prefix={{branch}}-,event=branch
+            type=raw,value=latest,event=branch,event=branch
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
