@@ -37,7 +37,7 @@ jobs:
         with:
           images: noelmni/antspynet
           tags: |
-            type=semver,pattern=v{{version}}
+            type=semver,pattern={{version}}
             # dynamically set the branch name as a prefix
             type=sha,prefix={{branch}}-
             # dynamically set the branch name
