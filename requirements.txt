@@ -1,5 +1,5 @@
 antspyx
-tensorflow; platform_machine == 'x86_64'
+tensorflow; platform_machine == 'x86_64' or platform_machine == 'aarch64'
 tensorflow-macos; platform_machine == 'arm64' and sys_platform == 'darwin'
 tensorflow-metal; platform_machine == 'arm64' and sys_platform == 'darwin'
 tensorflow_probability
