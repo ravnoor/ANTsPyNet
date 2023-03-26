@@ -1,10 +1,9 @@
 # This Dockerfile supports amd64 and arm64
 
-FROM noelmni/antspy:v0.3.5 as builder
+FROM noelmni/antspy:v0.3.8 as builder
 
 WORKDIR /usr/local/src
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+
 COPY . .
 
 # number of parallel make jobs
